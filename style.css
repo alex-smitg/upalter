@@ -1,0 +1,142 @@
+html {
+    background: black;
+}
+
+body {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: clip;
+}
+
+.screen {
+    position: relative;
+    display: inline-block;
+}
+
+#canvas {
+    display: block;
+}
+
+#overlay {
+    position: absolute;
+    pointer-events: none;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+    color: white;
+
+}
+
+
+.bottom_dialog {
+    position: absolute;
+    bottom: 0;
+    bottom: 0;
+    width: 100%;
+    height: 20%;
+    background-color: rgba(0, 21, 141, 0.24);
+    background-image: none;
+    background-size: auto;
+    background-size: 20px 20px;
+    background-image:
+        linear-gradient(to right, #075dff17 2px, #0070ff08 2px),
+        linear-gradient(to bottom, #042bff2e 1px, transparent 1px);
+    border-top: solid 1px #101077;
+
+    transition: all 0.6s ease;
+}
+
+
+.gradient {
+    position: absolute;
+    bottom: 0%;
+    height: 100%;
+    background: linear-gradient(10deg, black, #2909ca59);
+    width: 100%;
+    z-index: 1;
+}
+
+.text {
+    color: white;
+    position: absolute;
+    margin-left: 7%;
+    margin-top: 5px;
+    text-shadow: 1px 1px black;
+    font-size: 1.3em;
+    line-height: 1.6em;
+    z-index: 2;
+    user-select: none;
+}
+
+.ch_name {
+    color: white;
+    text-transform: capitalize;
+    margin-left: 4%;
+    text-shadow: 1px 1px black;
+    font-size: 1.2em;
+    position: absolute;
+    top: -30px;
+    z-index: 2;
+    user-select: none;
+}
+
+
+
+.progress {
+    height: 1px;
+    width: 100%;
+    background: white;
+}
+
+.action {
+    font-size: 27px;
+    color: rgb(229, 255, 0);
+    transition: all 0.2s ease;
+    width: fit-content;
+
+}
+
+.wavy_char {
+    font-size: 40px;
+    text-shadow: 2px 2px black;
+}
+
+.wavy_text {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    transform: translateY(70%);
+    height: 100%;
+}
+
+.battle {
+    pointer-events: all;
+    user-select: none;
+    white-space: pre-line;
+}
+
+.action:hover {
+    color: rgb(153, 2, 2);
+    cursor: pointer
+}
+
+.fade_screen {
+    background: rgb(255, 255, 255);
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index: 1;
+    transition: all 4.0s ease;
+    opacity: 1.0;
+}
+
+.hidden {
+    opacity: 0.0;
+}
