@@ -5,7 +5,7 @@ export default defineConfig({
   base: './',
   build: {
     target: 'esnext',
-    outDir: 'dist-itch',
+    outDir: 'dist',
     emptyOutDir: true,
     rollupOptions: {
       input: path.resolve(__dirname, 'index.html'),
@@ -23,7 +23,7 @@ export default defineConfig({
   plugins: [{
     name: "remove-module",
     transformIndexHtml(html) {
-      return html.replace(/type="module" crossorigin/g, "")
+      return html.replace(/type="module" crossorigin/g, "defer")
     }
   }]
 });
