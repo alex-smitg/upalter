@@ -1,4 +1,7 @@
 # Upalter game
+My first typescript web game
+
+![](upalter.png)
 
 ## Install
 ```bash
@@ -12,4 +15,3 @@ npm run dev
 ```bash
 npm run build
 ```
-move <script> tag to body end
