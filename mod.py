@@ -1,6 +1,7 @@
 #drag and drop .obj file on this file
 import sys
 import os
+from array import array
 
 def readModel(fromPath, toPath):
     vertices = []
@@ -8,6 +9,7 @@ def readModel(fromPath, toPath):
     tVertices = []
 
     out = ""
+    outArr = []
 
     with open(f"{fromPath}.obj", "r") as file:
         for line in file:
@@ -52,15 +54,19 @@ def readModel(fromPath, toPath):
                 for i in outVertices:
                     for j in vertices[i[0]]:
                         out += str(j) + ","
+                        outArr.append(j)
                     for k in tVertices[i[1]]:
                         out += str(k) + ","
+                        outArr.append(k)
                     for n in nVertices[i[2]]:
                         out += str(n) + ","
+                        outArr.append(n)
                     
-
+   
             
-    with open(f"{toPath}.model", "w") as file:
-        file.write(out)
+    with open(f"{toPath}.model", "wb") as f:
+        arr = array("d", outArr)
+        arr.tofile(f)
 
 
     print("ok")
@@ -79,4 +85,13 @@ for i in range(1, len(sys.argv)):
     if name[-1] == "obj":
         readModel(name[0], toName)
 
-
+    #convert old .model files to new .model
+    if name[-1] == "model":
+        with open(f"{name[0]}.model", "r") as f:
+            f2 = open(f"{name[0]}_new.model", "wb")
+            outArr = f.read().split(",")
+            outArr.pop()
+            outArr = [float(i) for i in outArr]
+            arr = array("d", outArr)
+            arr.tofile(f2)
+            f2.close()

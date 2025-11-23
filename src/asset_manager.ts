@@ -29,8 +29,7 @@ class AssetManager {
 
             switch (type) {
                 case ("model"):
-                    const text = new TextDecoder("utf-8").decode(buffer);
-                    const model = new Model(text)
+                    const model = new Model(buffer)
                     models[name] = model
                     break
                 case ("png"):

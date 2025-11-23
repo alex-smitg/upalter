@@ -4,23 +4,34 @@ import { attributes } from "./shader";
 const BUFFER_STRIDE: number = 8
 
 class Model {
-    vertices: number[] = []
+    verticesCount = 0
     arrayBuffer: WebGLBuffer | null = null
     VAO: WebGLBuffer | null = null
 
-    constructor(verticesText: String) {
+    constructor(verticesBuffer: ArrayBuffer) {
         this.VAO = gl.createVertexArray() 
         gl.bindVertexArray(this.VAO)
 
         this.arrayBuffer = gl.createBuffer() as WebGLBuffer
         gl.bindBuffer(gl.ARRAY_BUFFER, this.arrayBuffer)
 
-        let textArray: string[] = verticesText.split(",");
-        textArray.pop()
-        this.vertices = textArray.map(Number)
+        //let textArray: string[] = verticesText.split(",");
+        //textArray.pop()
+        //this.vertices = textArray.map(Number)
 
 
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this.vertices), gl.STATIC_DRAW)
+        console.log(verticesBuffer.byteLength)
+
+        
+
+        let fl: Float64Array = new Float64Array(verticesBuffer)
+        let ar = [].slice.call(fl)
+        this.verticesCount = ar.length / BUFFER_STRIDE
+        let f32: Float32Array = new Float32Array(ar)
+
+  
+
+        gl.bufferData(gl.ARRAY_BUFFER, f32, gl.STATIC_DRAW)
         gl.bindBuffer(gl.ARRAY_BUFFER, this.arrayBuffer)
 
 
@@ -52,10 +63,9 @@ class Model {
     }
 
     draw() {
-        const vertexCount = this.vertices.length / BUFFER_STRIDE
         gl.bindVertexArray(this.VAO)
         gl.bindBuffer(gl.ARRAY_BUFFER, this.arrayBuffer)
-        gl.drawArrays(gl.TRIANGLES, 0, vertexCount)
+        gl.drawArrays(gl.TRIANGLES, 0, this.verticesCount)
     }
 }
 

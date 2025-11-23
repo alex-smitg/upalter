@@ -89,8 +89,8 @@ body {
 
 .progress {
     height: 1px;
-    width: 100%;
     background: white;
+    width: 0%;
 }
 
 .action {
